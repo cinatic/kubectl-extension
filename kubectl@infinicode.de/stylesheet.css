@@ -75,6 +75,10 @@
 }
 
 /*** details ***/
+.kubectl-extension .k8s-navigation-bar {
+    padding: 0 16px;
+}
+
 .kubectl-extension .details-table {
     margin: 10px 15px;
     padding: 10px 20px;

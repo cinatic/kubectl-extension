@@ -86,7 +86,8 @@ var DefaultDetailsScreen = GObject.registerClass({
 
     const scrollView = new St.ScrollView({
       style_class: 'raw-resource-content-scroll-view',
-      x_expand: true
+      x_expand: true,
+      clip_to_allocation: true
     })
 
     const innerContentBox = new St.BoxLayout({
