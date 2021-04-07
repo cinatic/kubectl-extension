@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="kubectl@infinicode.de">
+    <enum id="org.gnome.shell.extensions.kubectl.position">
+        <value value="0" nick="center"/>
+        <value value="1" nick="right"/>
+        <value value="2" nick="left"/>
+    </enum>
+    <schema path="/org/gnome/shell/extensions/kubectl/" id="org.gnome.shell.extensions.kubectl">
+        <key name="position-in-panel" enum="org.gnome.shell.extensions.kubectl.position">
+            <default>'center'</default>
+            <summary>Position in Panel</summary>
+        </key>
+        <key type="s" name="namespace">
+            <default>'default'</default>
+            <summary>kubernetes namespace</summary>
+        </key>
+        <key type="s" name="context">
+            <default>''</default>
+            <summary>kubernetes context</summary>
+        </key>
+        <key type="s" name="resource">
+            <default>'pods'</default>
+            <summary>kubernetes api resource</summary>
+        </key>
+    </schema>
+</schemalist>
