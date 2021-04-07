@@ -1,0 +1,106 @@
+/**** some globals ****/
+.kubectl-extension .small-text {
+    font-size: .8em;
+}
+
+.kubectl-extension .fwb {
+    font-weight: bold;
+}
+
+.kubectl-extension .tac {
+    text-align: center;
+}
+
+.kubectl-extension .tar {
+    text-align: right;
+}
+
+.button-group .button.selected {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*** main components ***/
+
+.kubectl-select-box-selection-menu-scroll-view {
+    max-height: 450px;
+    min-height: auto;
+}
+
+.kubectl-extension .screen,
+.kubectl-extension .screen-wrapper {
+    width: 550px;
+    max-width: 550px;
+    height: 630px;
+    max-height: 630px;
+}
+
+.kubectl-extension .select-box-button-label {
+    padding: 4px 0;
+    margin: 0 4px;
+}
+
+.kubectl-extension .search-bar {
+    height: 40px;
+    padding: 5px 10px;
+}
+
+.kubectl-extension .search-bar .search-area-box .navigate-back-icon-button {
+    margin-right: 15px;
+}
+
+.kubectl-extension .search-bar .search-area-box .search-text-input .search-entry-icon {
+    width: 21px;
+    height: 21px;
+}
+
+.kubectl-extension .search-bar .button-box {
+    height: 20px;
+    margin-left: 15px;
+}
+
+.kubectl-extension .search-bar .button-box .icon-button {
+    margin: 0 5px;
+}
+
+.kubectl-extension .card {
+    margin: 10px 15px;
+    padding: 10px 20px;
+    box-shadow: none;
+}
+
+.kubectl-extension .card.service-card .port-forward-icon-button {
+    margin: 0 5px !important;
+    padding: 0 5px !important;
+}
+
+/*** details ***/
+.kubectl-extension .details-table {
+    margin: 10px 15px;
+    padding: 10px 20px;
+}
+
+.kubectl-extension .details-table .header-box {
+    margin-bottom: 16px;
+}
+
+.kubectl-extension .details-table .details-box.left {
+    margin-right: 10px;
+}
+
+.kubectl-extension .details-table .details-box.right {
+    margin-left: 10px;
+}
+
+.kubectl-extension .details-table .detail-item-value,
+.kubectl-extension .details-table .detail-item-label {
+    font-size: .9em;
+}
+
+.kubectl-extension .details-screen .raw-resource-content-scroll-view {
+    padding: 16px;
+}
+
+.kubectl-extension .details-screen .raw-resource-content-scroll-view .raw-resource-json-label {
+    padding: 8px;
+}
