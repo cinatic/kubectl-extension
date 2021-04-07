@@ -32,5 +32,3 @@ installed.
 
 The extension uses kubectl contexts, so make sure you have a valid kube configuration. See
 also https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/
-
-![Screenshot](images/settings.png)
