@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-shell-extension-kubectl package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-shell-extension-kubectl\n"
+"Report-Msgid-Bugs-To: fh@infinicode.de\n"
+"POT-Creation-Date: 2021-04-07 15:26+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: kubectl@infinicode.de/extension.js:56
+msgid "Kubectl"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:34 kubectl@infinicode.de/settings.ui:39
+msgid "Position in Panel"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:46 kubectl@infinicode.de/settings.ui:52
+msgid "Center"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:47 kubectl@infinicode.de/settings.ui:53
+msgid "Right"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:48 kubectl@infinicode.de/settings.ui:54
+msgid "Left"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:61 kubectl@infinicode.de/settings.ui:71
+msgid "General"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:96
+msgid "Version: "
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:103
+msgid "unknown (self-build ?)"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:112
+msgid ""
+"<span>kubectl-extension provides quick access to kubernetes resources "
+"utilizing the kubectl CLI</span>"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:128
+#: kubectl@infinicode.de/settings.ui:170
+msgid "Maintained by"
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:152
+msgid ""
+"<span size=\"small\">This program comes with ABSOLUTELY NO WARRANTY. See the "
+"<a href=\"https://www.gnu.org/licenses/gpl\">GNU General Public License, "
+"version 3 or later</a> for details.</span>\n"
+"                                        "
+msgstr ""
+
+#: kubectl@infinicode.de/settings_40.ui:166
+#: kubectl@infinicode.de/settings.ui:249
+msgid "About"
+msgstr ""
+
+#: kubectl@infinicode.de/settings.ui:110
+msgid "Version:"
+msgstr ""
+
+#: kubectl@infinicode.de/settings.ui:124
+msgid ""
+"unknown (self-build ?)\n"
+"                                                "
+msgstr ""
+
+#: kubectl@infinicode.de/settings.ui:145
+msgid ""
+"<span>kubectl-extension provides\n"
+"                                            quick access to kubernetes "
+"resources utilizing the kubectl CLI</span>\n"
+"                                        "
+msgstr ""
+
+#: kubectl@infinicode.de/settings.ui:223
+msgid ""
+"<span size=\"small\">This program\n"
+"                                            comes with ABSOLUTELY NO "
+"WARRANTY. See the <a\n"
+"                                            href=\"https://www.gnu.org/"
+"licenses/gpl\">GNU General Public License,\n"
+"                                            version 3 or later</a> for "
+"details.</span>\n"
+"                                        "
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:11
+msgid "back"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:12
+msgid "Filter Results"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:13
+msgid "Loading Data"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:14
+msgid "UNKNOWN"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:15
+msgid "Copied Selection"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:16
+msgid "Copied JSON"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:18
+msgid "Copy whole JSON"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:19
+msgid "No Items"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:20
+msgid "No Selection"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:21
+msgid "No Contexts"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:24
+#, javascript-format
+msgid "Failed loading k8s resources %s"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:25
+msgid "All Namespaces"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:26
+msgid "Key Data"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:29
+msgid "Name"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:30
+msgid "Namespace"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:31
+msgid "Node"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:32
+msgid "UID"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:33
+msgid "Created"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:34
+msgid "Kind"
+msgstr ""
+
+#: kubectl@infinicode.de/helpers/translations.js:37
+msgid "%H:%M:%S %d.%m.%Y"
+msgstr ""
