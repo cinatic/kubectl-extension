@@ -8,9 +8,9 @@
     "3.34",
     "3.36",
     "3.38",
-    "40.0"
+    "40"
   ],
   "url": "https://github.com/cinatic/kubectl-extension",
   "uuid": "kubectl@infinicode.de",
-  "version": 1
+  "version": 4
 }
