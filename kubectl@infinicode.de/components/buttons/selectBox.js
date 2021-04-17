@@ -6,8 +6,10 @@ const PopupMenu = imports.ui.popupMenu
 const ExtensionUtils = imports.misc.extensionUtils
 const Me = ExtensionUtils.getCurrentExtension()
 
+const { IconButton } = Me.imports.components.buttons.iconButton
 const { isNullOrEmpty } = Me.imports.helpers.data
 const { Translations } = Me.imports.helpers.translations
+
 
 // THX https://gitlab.com/jmiskinis/gnome-shell-extension-task-widget
 // the idea with the task select box thingy is super awesome!
@@ -39,13 +41,16 @@ var SelectBox = GObject.registerClass({
 
     this._buttonLabel = new St.Label({
       style_class: 'select-box-button-label',
-      text: buttonText
+      text: buttonText,
+      y_expand: true,
+      y_align: Clutter.ActorAlign.CENTER
     })
 
     const arrowIcon = new St.Icon({
-      style_class: 'popup-menu-arrow',
+      style_class: 'popup-menu-arrow select-box-popup-menu-arrow',
       icon_name: 'pan-down-symbolic',
       accessible_role: Atk.Role.ARROW,
+      y_expand: true,
       y_align: Clutter.ActorAlign.CENTER
     })
 

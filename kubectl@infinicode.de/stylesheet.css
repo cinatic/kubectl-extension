@@ -40,6 +40,10 @@
     margin: 0 4px;
 }
 
+.kubectl-extension .select-box-popup-menu-arrow {
+    margin-top: 2px;
+}
+
 .kubectl-extension .search-bar {
     height: 40px;
     padding: 5px 10px;
