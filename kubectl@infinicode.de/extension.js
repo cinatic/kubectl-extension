@@ -43,6 +43,7 @@ const MenuPosition = {
 
 let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends PanelMenu.Button {
   _init () {
+    this._previousPanelPosition = null
     this._settingsChangedId = null
 
     // Panel menu item - the current class
@@ -94,9 +95,11 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
     const container = this.container
     const parent = container.get_parent()
 
-    if (parent) {
-      parent.remove_actor(container)
+    if (!parent || this._previousPanelPosition === Settings.position_in_panel) {
+      return
     }
+
+    parent.remove_actor(container)
 
     let children = null
 
@@ -114,6 +117,8 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
         Main.panel._rightBox.insert_child_at_index(container, 0)
         break
     }
+
+    this._previousPanelPosition = Settings.position_in_panel
   }
 
   _destroyExtension () {
