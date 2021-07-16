@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-shell-extension-kubectl package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-shell-extension-kubectl\n"
+"Report-Msgid-Bugs-To: fh@infinicode.de\n"
+"POT-Creation-Date: 2021-04-17 22:08+0200\n"
+"PO-Revision-Date: 2021-07-16 14:19+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: kubectl@infinicode.de/extension.js:55
+msgid "Kubectl"
+msgstr "Kubectl"
+
+#: kubectl@infinicode.de/settings_40.ui:34 kubectl@infinicode.de/settings.ui:39
+msgid "Position in Panel"
+msgstr "Positie op bovenbalk"
+
+#: kubectl@infinicode.de/settings_40.ui:46 kubectl@infinicode.de/settings.ui:52
+msgid "Center"
+msgstr "Midden"
+
+#: kubectl@infinicode.de/settings_40.ui:47 kubectl@infinicode.de/settings.ui:53
+msgid "Right"
+msgstr "Rechts"
+
+#: kubectl@infinicode.de/settings_40.ui:48 kubectl@infinicode.de/settings.ui:54
+msgid "Left"
+msgstr "Links"
+
+#: kubectl@infinicode.de/settings_40.ui:61 kubectl@infinicode.de/settings.ui:71
+msgid "General"
+msgstr "Algemeen"
+
+#: kubectl@infinicode.de/settings_40.ui:96
+msgid "Version: "
+msgstr "Versie: "
+
+#: kubectl@infinicode.de/settings_40.ui:103
+msgid "unknown (self-build ?)"
+msgstr "onbekend (zelf-gecompileerd?)"
+
+#: kubectl@infinicode.de/settings_40.ui:112
+msgid ""
+"<span>kubectl-extension provides quick access to kubernetes resources "
+"utilizing the kubectl CLI</span>"
+msgstr ""
+"<span>De Kubectl-uitbreiding maakt gebruik van de kubectl-cli om snelle "
+"toegang te bieden tot kubernetes-instanties</span>"
+
+#: kubectl@infinicode.de/settings_40.ui:128
+#: kubectl@infinicode.de/settings.ui:170
+msgid "Maintained by"
+msgstr "Beheerd door"
+
+#: kubectl@infinicode.de/settings_40.ui:152
+msgid ""
+"<span size=\"small\">This program comes with ABSOLUTELY NO WARRANTY. See the "
+"<a href=\"https://www.gnu.org/licenses/gpl\">GNU General Public License, "
+"version 3 or later</a> for details.</span>\n"
+"                                        "
+msgstr ""
+"<span size=\"small\">Deze toepassing biedt GEEN GARANTIE. Bekijk voor meer "
+"informatie de <a href=\"https://www.gnu.org/licenses/gpl\">GNU General "
+"Public License, versie 3 of hoger</a>.</span>\n"
+"                                        "
+
+#: kubectl@infinicode.de/settings_40.ui:166
+#: kubectl@infinicode.de/settings.ui:249
+msgid "About"
+msgstr "Over"
+
+#: kubectl@infinicode.de/settings.ui:110
+msgid "Version:"
+msgstr "Versie:"
+
+#: kubectl@infinicode.de/settings.ui:124
+msgid ""
+"unknown (self-build ?)\n"
+"                                                "
+msgstr ""
+"onbekend (zelf-gecompileerd?)\n"
+"                                                "
+
+#: kubectl@infinicode.de/settings.ui:145
+msgid ""
+"<span>kubectl-extension provides\n"
+"                                            quick access to kubernetes "
+"resources utilizing the kubectl CLI</span>\n"
+"                                        "
+msgstr ""
+"<span>De Kubectl-uitbreiding maakt gebruik van\n"
+"                                            de kubectl-cli om snelle toegang "
+"te bieden tot kubernetes-instanties</span>\n"
+"                                        "
+
+#: kubectl@infinicode.de/settings.ui:223
+msgid ""
+"<span size=\"small\">This program\n"
+"                                            comes with ABSOLUTELY NO "
+"WARRANTY. See the <a\n"
+"                                            href=\"https://www.gnu.org/"
+"licenses/gpl\">GNU General Public License,\n"
+"                                            version 3 or later</a> for "
+"details.</span>\n"
+"                                        "
+msgstr ""
+"<span size=\"small\">Deze toepassing biedt GEEN GARANTIE. Bekijk voor meer "
+"informatie de <a href=\"https://www.gnu.org/licenses/gpl\">GNU General "
+"Public License, versie 3 of hoger</a>.</span>\n"
+"                                        "
+
+#: kubectl@infinicode.de/helpers/translations.js:11
+msgid "back"
+msgstr "Terug"
+
+#: kubectl@infinicode.de/helpers/translations.js:12
+msgid "Filter Results"
+msgstr "Resultaten filteren"
+
+#: kubectl@infinicode.de/helpers/translations.js:13
+msgid "Loading Data"
+msgstr "Bezig met laden van gegevens…"
+
+#: kubectl@infinicode.de/helpers/translations.js:14
+msgid "UNKNOWN"
+msgstr "ONBEKEND"
+
+#: kubectl@infinicode.de/helpers/translations.js:15
+msgid "Copied Selection"
+msgstr "De selectie is gekopieerd"
+
+#: kubectl@infinicode.de/helpers/translations.js:16
+msgid "Copied JSON"
+msgstr "De json-gegevens zijn gekopieerd"
+
+#: kubectl@infinicode.de/helpers/translations.js:18
+msgid "Copy whole JSON"
+msgstr "Alle json-gegevens kopiëren"
+
+#: kubectl@infinicode.de/helpers/translations.js:19
+msgid "No Items"
+msgstr "Geen items"
+
+#: kubectl@infinicode.de/helpers/translations.js:20
+msgid "No Selection"
+msgstr "Niets geselecteerd"
+
+#: kubectl@infinicode.de/helpers/translations.js:21
+msgid "No Contexts"
+msgstr "Geen contexten"
+
+#: kubectl@infinicode.de/helpers/translations.js:24
+#, javascript-format
+msgid "Failed loading k8s resources %s"
+msgstr "De k8s-bronnen ‘%s’ kunnen niet worden geladen"
+
+#: kubectl@infinicode.de/helpers/translations.js:25
+msgid "All Namespaces"
+msgstr "Alle naamruimten"
+
+#: kubectl@infinicode.de/helpers/translations.js:26
+msgid "Key Data"
+msgstr "Sleutelinformatie"
+
+#: kubectl@infinicode.de/helpers/translations.js:29
+msgid "Name"
+msgstr "Naam"
+
+#: kubectl@infinicode.de/helpers/translations.js:30
+msgid "Namespace"
+msgstr "Naamruimte"
+
+#: kubectl@infinicode.de/helpers/translations.js:31
+msgid "Node"
+msgstr "Node"
+
+#: kubectl@infinicode.de/helpers/translations.js:32
+msgid "UID"
+msgstr "UID"
+
+#: kubectl@infinicode.de/helpers/translations.js:33
+msgid "Created"
+msgstr "Gemaakt op"
+
+#: kubectl@infinicode.de/helpers/translations.js:34
+msgid "Kind"
+msgstr "Soort"
+
+#: kubectl@infinicode.de/helpers/translations.js:37
+msgid "%H:%M:%S %d.%m.%Y"
+msgstr "%H:%M:%S %d %m %Y"
