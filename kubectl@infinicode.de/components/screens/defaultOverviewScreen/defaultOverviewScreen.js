@@ -12,7 +12,7 @@ const { SearchBar } = Me.imports.components.searchBar.searchBar
 const { setTimeout, clearTimeout } = Me.imports.helpers.components
 
 const {
-  Settings,
+  SettingsHandler,
   KUBECTL_NAMESPACE,
   KUBECTL_CONTEXT,
   KUBECTL_RESOURCE
@@ -37,6 +37,8 @@ var DefaultOverviewScreen = GObject.registerClass({
       reactive: true
     })
 
+    this._settings = new SettingsHandler()
+
     this._isRendering = false
     this._showLoadingInfoTimeoutId = null
     this._autoRefreshTimeoutId = null
@@ -58,7 +60,7 @@ var DefaultOverviewScreen = GObject.registerClass({
 
     searchBar.connect('text-change', (sender, searchText) => this._filter_results(searchText))
 
-    this._settingsChangedId = Settings.connect('changed', (value, key) => {
+    this._settingsChangedId = this._settings.connect('changed', (value, key) => {
       if (SETTING_KEYS_TO_REFRESH.includes(key)) {
         this._loadData()
       }
@@ -117,7 +119,7 @@ var DefaultOverviewScreen = GObject.registerClass({
 
     let dataList, error
     try {
-      const result = await kubectl.api.loadResourcesByType(Settings.resource)
+      const result = await kubectl.api.loadResourcesByType(this._settings.resource)
       dataList = result.data
       error = result.error
     } catch (e) {
@@ -136,7 +138,7 @@ var DefaultOverviewScreen = GObject.registerClass({
       this._list.clear_list_items()
 
       dataList.forEach(data => {
-        const card = createCard(Settings.resource, data)
+        const card = createCard(this._settings.resource, data)
         this._list.addItem(card)
       })
     }
@@ -159,7 +161,7 @@ var DefaultOverviewScreen = GObject.registerClass({
     }
 
     if (this._settingsChangedId) {
-      this._settingsChangedId = Settings.disconnect(this._settingsChangedId)
+      this._settingsChangedId = this._settings.disconnect(this._settingsChangedId)
     }
   }
 })

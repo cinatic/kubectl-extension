@@ -7,7 +7,7 @@ const Me = ExtensionUtils.getCurrentExtension()
 const { isNullOrEmpty } = Me.imports.helpers.data
 const { EventHandler } = Me.imports.helpers.eventHandler
 const { IconButton } = Me.imports.components.buttons.iconButton
-const { Settings } = Me.imports.helpers.settings
+const { SettingsHandler } = Me.imports.helpers.settings
 
 var ServiceCard = GObject.registerClass({
   GTypeName: 'KubectlExtension_ServiceCard'
@@ -20,6 +20,7 @@ var ServiceCard = GObject.registerClass({
     })
 
     this.cardItem = cardItem
+    this._settings = new SettingsHandler()
 
     const contentBox = new St.BoxLayout({
       y_align: Clutter.ActorAlign.CENTER
@@ -125,7 +126,7 @@ var ServiceCard = GObject.registerClass({
             'gnome-terminal',
             '--',
             path + '/port-forward.sh',
-            Settings.context,
+            this._settings.context,
             this.cardItem.metadata.namespace,
             `service/${this.cardItem.name}`,
             port

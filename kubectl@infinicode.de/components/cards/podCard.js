@@ -6,7 +6,7 @@ const Me = ExtensionUtils.getCurrentExtension()
 
 const { EventHandler } = Me.imports.helpers.eventHandler
 const { IconButton } = Me.imports.components.buttons.iconButton
-const { Settings } = Me.imports.helpers.settings
+const { SettingsHandler } = Me.imports.helpers.settings
 
 var PodCard = GObject.registerClass({
   GTypeName: 'KubectlExtension_PodCard'
@@ -18,6 +18,7 @@ var PodCard = GObject.registerClass({
       x_expand: true
     })
 
+    this._settings = new SettingsHandler()
     this.cardItem = cardItem
 
     const contentBox = new St.BoxLayout({
@@ -95,7 +96,7 @@ var PodCard = GObject.registerClass({
           'gnome-terminal',
           '--',
           path + '/open-terminal.sh',
-          Settings.context,
+          this._settings.context,
           this.cardItem.metadata.namespace,
           this.cardItem.name
         ])

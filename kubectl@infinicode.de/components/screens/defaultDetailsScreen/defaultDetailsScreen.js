@@ -161,5 +161,6 @@ var DefaultDetailsScreen = GObject.registerClass({
   }
 
   _onDestroy () {
+    clearTimeout(this._selectionDebounceTimeoutId)
   }
 })

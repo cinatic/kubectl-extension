@@ -54,7 +54,7 @@ var getSettings = () => {
   })
 }
 
-const Handler = class {
+var SettingsHandler = class SettingsHandler {
   constructor () {
     this._settings = getSettings(SETTINGS_SCHEMA_DOMAIN)
   }
@@ -95,5 +95,3 @@ const Handler = class {
     this._settings.disconnect(connectId)
   }
 }
-
-var Settings = new Handler()
