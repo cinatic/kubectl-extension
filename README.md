@@ -1,4 +1,4 @@
-# [kubectl-extension](https://extensions.gnome.org/)
+# [kubectl-extension](https://extensions.gnome.org/extension/4147/kubectl-extension/)
 
 [![Actions Status: Build & Create Package](https://github.com/cinatic/kubectl-extension/workflows/Build%20%26%20Create%20Package/badge.svg)](https://github.com/cinatic/kubectl-extension/actions?query=workflow%3A"Build+&+Create+Package")
 [![Actions Status: Build Package & Create Release](https://github.com/cinatic/kubectl-extension/workflows/Build%20Package%20%26%20Create%20Release/badge.svg)](https://github.com/cinatic/kubectl-extension/actions?query=workflow%3A"Build+Package+&+Create+Release")
@@ -14,7 +14,7 @@ An extension for quick access kubernetes resources in GNOME Shell panel utilizin
 
 ### Over extensions.gnome.org (EGO)
 
-Install via install button -> TBA
+Install via install button -> https://extensions.gnome.org/extension/4147/kubectl-extension/
 
 ### Generic (Local installation)
 
