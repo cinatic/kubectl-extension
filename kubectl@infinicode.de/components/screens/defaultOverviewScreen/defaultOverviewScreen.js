@@ -159,7 +159,7 @@ var DefaultOverviewScreen = GObject.registerClass({
     }
 
     if (this._settingsChangedId) {
-      Settings.disconnect(this._settingsChangedId)
+      this._settingsChangedId = Settings.disconnect(this._settingsChangedId)
     }
   }
 })

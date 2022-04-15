@@ -37,13 +37,13 @@ var K8sNavigationBar = GObject.registerClass({
       x_expand: true
     })
 
+    this.connect('destroy', this._onDestroy.bind(this))
+
     this._settingsChangedId = Settings.connect('changed', (value, key) => {
       if (SETTING_KEYS_TO_REFRESH.includes(key)) {
         this._sync()
       }
     })
-
-    this.connect('destroy', this._onDestroy.bind(this))
 
     this._sync()
   }
@@ -129,5 +129,8 @@ var K8sNavigationBar = GObject.registerClass({
   }
 
   _onDestroy () {
+    if (this._settingsChangedId) {
+      this._settingsChangedId = Settings.disconnect(this._settingsChangedId)
+    }
   }
 })
