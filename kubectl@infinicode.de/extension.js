@@ -24,7 +24,6 @@ const Me = ExtensionUtils.getCurrentExtension()
 
 const { ScreenWrapper } = Me.imports.components.screenWrapper.screenWrapper
 const { EventHandler } = Me.imports.helpers.eventHandler
-const { initTranslations } = Me.imports.helpers.translations
 const { SettingsHandler } = Me.imports.helpers.settings
 
 const ComponentsHelper = Me.imports.helpers.components
@@ -134,7 +133,7 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
 var kubectlMenu = null
 
 function init (extensionMeta) {
-  initTranslations()
+  ExtensionUtils.initTranslations(Me.metadata['gettext-domain']);
 }
 
 function enable () {

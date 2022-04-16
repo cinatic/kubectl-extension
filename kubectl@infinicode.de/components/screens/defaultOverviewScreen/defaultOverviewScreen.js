@@ -157,6 +157,10 @@ var DefaultOverviewScreen = GObject.registerClass({
   }
 
   _onDestroy () {
+    if (this._showLoadingInfoTimeoutId) {
+      this._showLoadingInfoTimeoutId = clearTimeout(this._showLoadingInfoTimeoutId)
+    }
+
     if (this._autoRefreshTimeoutId) {
       this._autoRefreshTimeoutId = clearTimeout(this._autoRefreshTimeoutId)
     }
