@@ -47,6 +47,7 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
     this._settingsChangedId = null
 
     this._settings = new SettingsHandler()
+    const mainEventHandler = new EventHandler()
 
     // Panel menu item - the current class
     let menuAlignment = 0.25
@@ -74,16 +75,16 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
     bin._delegate = this
     this.menu.box.add_child(bin)
 
-    this._screenWrapper = new ScreenWrapper()
+    this._screenWrapper = new ScreenWrapper(mainEventHandler)
     bin.add_actor(this._screenWrapper)
 
     // Bind events
-    EventHandler.connect('hide-panel', () => this.menu.close())
+    mainEventHandler.connect('hide-panel', () => this.menu.close())
     this._settingsChangedId = this._settings.connect('changed', (changedValue, changedKey) => this._sync(changedValue, changedKey))
 
     this.menu.connect('destroy', this._destroyExtension.bind(this))
     this.menu.connect('open-state-changed', (menu, isOpen) => {
-      EventHandler.emit('open-state-changed', { isOpen })
+      mainEventHandler.emit('open-state-changed', { isOpen })
     })
 
     this._sync()
@@ -143,5 +144,7 @@ function enable () {
 }
 
 function disable () {
-  kubectlMenu.destroy()
+  if (kubectlMenu) {
+    kubectlMenu.destroy()
+  }
 }

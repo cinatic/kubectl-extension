@@ -5,14 +5,13 @@ const Util = imports.misc.util
 const Me = ExtensionUtils.getCurrentExtension()
 
 const { isNullOrEmpty } = Me.imports.helpers.data
-const { EventHandler } = Me.imports.helpers.eventHandler
 const { IconButton } = Me.imports.components.buttons.iconButton
 const { SettingsHandler } = Me.imports.helpers.settings
 
 var ServiceCard = GObject.registerClass({
   GTypeName: 'KubectlExtension_ServiceCard'
 }, class ServiceCard extends St.Button {
-  _init (cardItem) {
+  _init (cardItem, mainEventHandler) {
     super._init({
       style_class: 'card message service-card',
       can_focus: true,
@@ -20,6 +19,8 @@ var ServiceCard = GObject.registerClass({
     })
 
     this.cardItem = cardItem
+
+    this._mainEventHandler = mainEventHandler
     this._settings = new SettingsHandler()
 
     const contentBox = new St.BoxLayout({
@@ -120,7 +121,7 @@ var ServiceCard = GObject.registerClass({
         icon_name: 'network-wired-symbolic',
         icon_size: 12,
         onClick: () => {
-          EventHandler.emit('hide-panel')
+          this._mainEventHandler.emit('hide-panel')
           const path = Me.dir.get_child('scripts').get_path()
           Util.spawnApp([
             'gnome-terminal',

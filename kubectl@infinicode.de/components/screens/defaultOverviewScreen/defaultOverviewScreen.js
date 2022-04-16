@@ -30,7 +30,7 @@ const SETTING_KEYS_TO_REFRESH = [
 var DefaultOverviewScreen = GObject.registerClass({
   GTypeName: 'KubectlExtension_DefaultOverviewScreen'
 }, class DefaultOverviewScreen extends St.BoxLayout {
-  _init () {
+  _init (mainEventHandler) {
     super._init({
       style_class: 'screen overview-screen default',
       vertical: true,
@@ -38,12 +38,13 @@ var DefaultOverviewScreen = GObject.registerClass({
     })
 
     this._settings = new SettingsHandler()
+    this._mainEventHandler = mainEventHandler
 
     this._isRendering = false
     this._showLoadingInfoTimeoutId = null
     this._autoRefreshTimeoutId = null
 
-    const searchBar = new SearchBar()
+    const searchBar = new SearchBar({ mainEventHandler: this._mainEventHandler })
     const k8sNavigationBar = new K8sNavigationBar()
     this._list = new FlatList()
 
@@ -138,7 +139,7 @@ var DefaultOverviewScreen = GObject.registerClass({
       this._list.clear_list_items()
 
       dataList.forEach(data => {
-        const card = createCard(this._settings.resource, data)
+        const card = createCard(this._settings.resource, data, this._mainEventHandler)
         this._list.addItem(card)
       })
     }
@@ -147,7 +148,7 @@ var DefaultOverviewScreen = GObject.registerClass({
   }
 
   _onItemClick (sender, item) {
-    EventHandler.emit('show-screen', {
+    this._mainEventHandler.emit('show-screen', {
       screen: 'details',
       additionalData: {
         item: item.cardItem
