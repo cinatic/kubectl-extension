@@ -1,6 +1,6 @@
 const { GObject } = imports.gi
 const Signals = imports.signals
 
-const EventHandler = class {}
+var EventHandler = class EventHandler {}
 
 Signals.addSignalMethods(EventHandler.prototype)
