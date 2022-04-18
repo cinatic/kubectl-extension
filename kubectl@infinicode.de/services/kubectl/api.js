@@ -4,7 +4,7 @@ const Me = ExtensionUtils.getCurrentExtension()
 const { isNullOrEmpty } = Me.imports.helpers.data
 const { showNotification } = Me.imports.helpers.components
 const { run } = Me.imports.helpers.subprocess
-const { Settings } = Me.imports.helpers.settings
+const { SettingsHandler } = Me.imports.helpers.settings
 const { Translations } = Me.imports.helpers.translations
 const { DefaultResource } = Me.imports.services.dto.defaultResource
 const { Pod } = Me.imports.services.dto.pod
@@ -19,16 +19,18 @@ const defaultApiResources = [
 ]
 
 var createStandardParams = (context = true, namespace = true) => {
+  this._settings = new SettingsHandler()
+
   const params = []
-  if (context && Settings.context) {
-    params.push(`--context=${Settings.context}`)
+  if (context && this._settings.context) {
+    params.push(`--context=${this._settings.context}`)
   }
 
-  if (namespace && Settings.namespace) {
-    if (Settings.namespace === 'all') {
+  if (namespace && this._settings.namespace) {
+    if (this._settings.namespace === 'all') {
       params.push(`--all-namespaces`)
     } else {
-      params.push(`--namespace=${Settings.namespace}`)
+      params.push(`--namespace=${this._settings.namespace}`)
     }
   }
 

@@ -12,7 +12,7 @@ const { SearchBar } = Me.imports.components.searchBar.searchBar
 const { setTimeout, clearTimeout } = Me.imports.helpers.components
 
 const {
-  Settings,
+  SettingsHandler,
   KUBECTL_NAMESPACE,
   KUBECTL_CONTEXT,
   KUBECTL_RESOURCE
@@ -30,18 +30,21 @@ const SETTING_KEYS_TO_REFRESH = [
 var DefaultOverviewScreen = GObject.registerClass({
   GTypeName: 'KubectlExtension_DefaultOverviewScreen'
 }, class DefaultOverviewScreen extends St.BoxLayout {
-  _init () {
+  _init (mainEventHandler) {
     super._init({
       style_class: 'screen overview-screen default',
       vertical: true,
       reactive: true
     })
 
+    this._settings = new SettingsHandler()
+    this._mainEventHandler = mainEventHandler
+
     this._isRendering = false
     this._showLoadingInfoTimeoutId = null
     this._autoRefreshTimeoutId = null
 
-    const searchBar = new SearchBar()
+    const searchBar = new SearchBar({ mainEventHandler: this._mainEventHandler })
     const k8sNavigationBar = new K8sNavigationBar()
     this._list = new FlatList()
 
@@ -58,7 +61,7 @@ var DefaultOverviewScreen = GObject.registerClass({
 
     searchBar.connect('text-change', (sender, searchText) => this._filter_results(searchText))
 
-    this._settingsChangedId = Settings.connect('changed', (value, key) => {
+    this._settingsChangedId = this._settings.connect('changed', (value, key) => {
       if (SETTING_KEYS_TO_REFRESH.includes(key)) {
         this._loadData()
       }
@@ -117,7 +120,7 @@ var DefaultOverviewScreen = GObject.registerClass({
 
     let dataList, error
     try {
-      const result = await kubectl.api.loadResourcesByType(Settings.resource)
+      const result = await kubectl.api.loadResourcesByType(this._settings.resource)
       dataList = result.data
       error = result.error
     } catch (e) {
@@ -136,7 +139,7 @@ var DefaultOverviewScreen = GObject.registerClass({
       this._list.clear_list_items()
 
       dataList.forEach(data => {
-        const card = createCard(Settings.resource, data)
+        const card = createCard(this._settings.resource, data, this._mainEventHandler)
         this._list.addItem(card)
       })
     }
@@ -145,7 +148,7 @@ var DefaultOverviewScreen = GObject.registerClass({
   }
 
   _onItemClick (sender, item) {
-    EventHandler.emit('show-screen', {
+    this._mainEventHandler.emit('show-screen', {
       screen: 'details',
       additionalData: {
         item: item.cardItem
@@ -154,12 +157,16 @@ var DefaultOverviewScreen = GObject.registerClass({
   }
 
   _onDestroy () {
+    if (this._showLoadingInfoTimeoutId) {
+      this._showLoadingInfoTimeoutId = clearTimeout(this._showLoadingInfoTimeoutId)
+    }
+
     if (this._autoRefreshTimeoutId) {
       this._autoRefreshTimeoutId = clearTimeout(this._autoRefreshTimeoutId)
     }
 
     if (this._settingsChangedId) {
-      this._settingsChangedId = Settings.disconnect(this._settingsChangedId)
+      this._settingsChangedId = this._settings.disconnect(this._settingsChangedId)
     }
   }
 })

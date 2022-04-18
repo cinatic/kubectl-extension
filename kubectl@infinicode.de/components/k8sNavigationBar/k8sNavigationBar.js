@@ -8,7 +8,7 @@ const { isNullOrEmpty } = Me.imports.helpers.data
 const { Translations } = Me.imports.helpers.translations
 
 const {
-  Settings,
+  SettingsHandler,
   KUBECTL_NAMESPACE,
   KUBECTL_CONTEXT,
   KUBECTL_RESOURCE
@@ -37,9 +37,11 @@ var K8sNavigationBar = GObject.registerClass({
       x_expand: true
     })
 
+    this._settings = new SettingsHandler()
+
     this.connect('destroy', this._onDestroy.bind(this))
 
-    this._settingsChangedId = Settings.connect('changed', (value, key) => {
+    this._settingsChangedId = this._settings.connect('changed', (value, key) => {
       if (SETTING_KEYS_TO_REFRESH.includes(key)) {
         this._sync()
       }
@@ -66,7 +68,7 @@ var K8sNavigationBar = GObject.registerClass({
         value: item
       })),
       fallbackToFirstItem: true,
-      selectedValue: Settings.context,
+      selectedValue: this._settings.context,
       onItemValidationChange: this._onContextChange.bind(this),
       noItemsText: Translations.BUTTONS.NO_CONTEXTS
     })
@@ -78,7 +80,7 @@ var K8sNavigationBar = GObject.registerClass({
         value: item.resource
       })),
       fallbackToFirstItem: true,
-      selectedValue: Settings.resource,
+      selectedValue: this._settings.resource,
       onItemValidationChange: this._onResourceChange.bind(this)
     })
 
@@ -98,7 +100,7 @@ var K8sNavigationBar = GObject.registerClass({
         ...namespaceSelectBoxItems
       ],
       fallbackToFirstItem: true,
-      selectedValue: Settings.namespace,
+      selectedValue: this._settings.namespace,
       onItemValidationChange: this._onNamespaceChange.bind(this)
     })
 
@@ -114,23 +116,23 @@ var K8sNavigationBar = GObject.registerClass({
   }
 
   _onContextChange (_, value) {
-    Settings.context = value
+    this._settings.context = value
     this._sync()
   }
 
   _onResourceChange (_, value) {
-    Settings.resource = value
+    this._settings.resource = value
     this._sync()
   }
 
   _onNamespaceChange (_, value) {
-    Settings.namespace = value
+    this._settings.namespace = value
     this._sync()
   }
 
   _onDestroy () {
     if (this._settingsChangedId) {
-      this._settingsChangedId = Settings.disconnect(this._settingsChangedId)
+      this._settingsChangedId = this._settings.disconnect(this._settingsChangedId)
     }
   }
 })

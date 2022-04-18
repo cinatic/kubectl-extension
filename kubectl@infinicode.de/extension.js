@@ -24,8 +24,7 @@ const Me = ExtensionUtils.getCurrentExtension()
 
 const { ScreenWrapper } = Me.imports.components.screenWrapper.screenWrapper
 const { EventHandler } = Me.imports.helpers.eventHandler
-const { initTranslations } = Me.imports.helpers.translations
-const { Settings } = Me.imports.helpers.settings
+const { SettingsHandler } = Me.imports.helpers.settings
 
 const ComponentsHelper = Me.imports.helpers.components
 
@@ -45,6 +44,9 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
   _init () {
     this._previousPanelPosition = null
     this._settingsChangedId = null
+
+    this._settings = new SettingsHandler()
+    const mainEventHandler = new EventHandler()
 
     // Panel menu item - the current class
     let menuAlignment = 0.25
@@ -72,16 +74,16 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
     bin._delegate = this
     this.menu.box.add_child(bin)
 
-    this._screenWrapper = new ScreenWrapper()
+    this._screenWrapper = new ScreenWrapper(mainEventHandler)
     bin.add_actor(this._screenWrapper)
 
     // Bind events
-    EventHandler.connect('hide-panel', () => this.menu.close())
-    this._settingsChangedId = Settings.connect('changed', (changedValue, changedKey) => this._sync(changedValue, changedKey))
+    mainEventHandler.connect('hide-panel', () => this.menu.close())
+    this._settingsChangedId = this._settings.connect('changed', (changedValue, changedKey) => this._sync(changedValue, changedKey))
 
     this.menu.connect('destroy', this._destroyExtension.bind(this))
     this.menu.connect('open-state-changed', (menu, isOpen) => {
-      EventHandler.emit('open-state-changed', { isOpen })
+      mainEventHandler.emit('open-state-changed', { isOpen })
     })
 
     this._sync()
@@ -95,7 +97,7 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
     const container = this.container
     const parent = container.get_parent()
 
-    if (!parent || this._previousPanelPosition === Settings.position_in_panel) {
+    if (!parent || this._previousPanelPosition === this._settings.position_in_panel) {
       return
     }
 
@@ -103,7 +105,7 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
 
     let children = null
 
-    switch (Settings.position_in_panel) {
+    switch (this._settings.position_in_panel) {
       case MenuPosition.LEFT:
         children = Main.panel._leftBox.get_children()
         Main.panel._leftBox.insert_child_at_index(container, children.length)
@@ -118,20 +120,20 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
         break
     }
 
-    this._previousPanelPosition = Settings.position_in_panel
+    this._previousPanelPosition = this._settings.position_in_panel
   }
 
   _destroyExtension () {
     if (this._settingsChangedId) {
-      Settings.disconnect(this._settingsChangedId)
+      this._settings.disconnect(this._settingsChangedId)
     }
   }
 })
 
-var kubectlMenu
+var kubectlMenu = null
 
 function init (extensionMeta) {
-  initTranslations()
+  ExtensionUtils.initTranslations();
 }
 
 function enable () {
@@ -141,5 +143,7 @@ function enable () {
 }
 
 function disable () {
-  kubectlMenu.destroy()
+  if (kubectlMenu) {
+    kubectlMenu.destroy()
+  }
 }

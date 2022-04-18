@@ -16,7 +16,7 @@ const { kubectl } = Me.imports.services.kubectlService
 var DefaultDetailsScreen = GObject.registerClass({
   GTypeName: 'KubectlExtension_DefaultDetailsScreen'
 }, class DefaultDetailsScreen extends St.BoxLayout {
-  _init ({ cardItem }) {
+  _init ({ cardItem, mainEventHandler }) {
     super._init({
       style_class: 'screen details-screen default',
       x_expand: true,
@@ -25,6 +25,8 @@ var DefaultDetailsScreen = GObject.registerClass({
     })
 
     this.cardItem = cardItem
+
+    this._mainEventHandler = mainEventHandler
 
     this._selectionDebounceTimeoutId = null
     this._clipboard = St.Clipboard.get_default()
@@ -35,7 +37,8 @@ var DefaultDetailsScreen = GObject.registerClass({
   async _initialRender () {
     const searchBar = new SearchBar({
       back_screen_name: 'overview',
-      showFilterInputBox: false
+      showFilterInputBox: false,
+      mainEventHandler: this._mainEventHandler
     })
 
     this._contentBox = new St.BoxLayout({
@@ -161,5 +164,6 @@ var DefaultDetailsScreen = GObject.registerClass({
   }
 
   _onDestroy () {
+    clearTimeout(this._selectionDebounceTimeoutId)
   }
 })

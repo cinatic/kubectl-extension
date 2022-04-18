@@ -3,9 +3,9 @@
   "description": "Quick panel access to kubernetes resources utilizing kubectl CLI",
   "localedir": "/usr/local/share/locale",
   "name": "Kubectl Extension",
+  "settings-schema": "org.gnome.shell.extensions.kubectl",
+  "gettext-domain": "kubectl@infinicode.de",
   "shell-version": [
-    "3.32",
-    "3.34",
     "3.36",
     "3.38",
     "40",
@@ -14,5 +14,5 @@
   ],
   "url": "https://github.com/cinatic/kubectl-extension",
   "uuid": "kubectl@infinicode.de",
-  "version": 5
+  "version": 6
 }

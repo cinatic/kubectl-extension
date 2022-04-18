@@ -4,19 +4,21 @@ const ExtensionUtils = imports.misc.extensionUtils
 const Util = imports.misc.util
 const Me = ExtensionUtils.getCurrentExtension()
 
-const { EventHandler } = Me.imports.helpers.eventHandler
 const { IconButton } = Me.imports.components.buttons.iconButton
-const { Settings } = Me.imports.helpers.settings
+const { SettingsHandler } = Me.imports.helpers.settings
 
 var PodCard = GObject.registerClass({
   GTypeName: 'KubectlExtension_PodCard'
 }, class PodCard extends St.Button {
-  _init (cardItem) {
+  _init (cardItem, mainEventHandler) {
     super._init({
       style_class: 'card message pod-card',
       can_focus: true,
       x_expand: true
     })
+
+    this._settings = new SettingsHandler()
+    this._mainEventHandler = mainEventHandler
 
     this.cardItem = cardItem
 
@@ -89,13 +91,13 @@ var PodCard = GObject.registerClass({
       style_class: 'run-command-icon-button',
       icon_name: 'utilities-terminal-symbolic',
       onClick: () => {
-        EventHandler.emit('hide-panel')
+        this._mainEventHandler.emit('hide-panel')
         const path = Me.dir.get_child('scripts').get_path()
         Util.spawnApp([
           'gnome-terminal',
           '--',
           path + '/open-terminal.sh',
-          Settings.context,
+          this._settings.context,
           this.cardItem.metadata.namespace,
           this.cardItem.name
         ])
