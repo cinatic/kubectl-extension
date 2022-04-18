@@ -10,7 +10,7 @@ var SETTINGS_SCHEMA_DOMAIN = 'org.gnome.shell.extensions.kubectl'
 
 var SettingsHandler = class SettingsHandler {
   constructor () {
-    this._settings = ExtensionUtils.getSettings(SETTINGS_SCHEMA_DOMAIN)
+    this._settings = ExtensionUtils.getSettings()
   }
 
   get position_in_panel () {

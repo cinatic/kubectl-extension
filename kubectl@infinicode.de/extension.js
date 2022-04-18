@@ -133,7 +133,7 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
 var kubectlMenu = null
 
 function init (extensionMeta) {
-  ExtensionUtils.initTranslations(Me.metadata['gettext-domain']);
+  ExtensionUtils.initTranslations();
 }
 
 function enable () {
