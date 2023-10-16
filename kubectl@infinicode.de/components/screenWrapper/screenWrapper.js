@@ -1,11 +1,10 @@
-const { GObject, St } = imports.gi
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
-const { DefaultDetailsScreen } = Me.imports.components.screens.defaultDetailsScreen.defaultDetailsScreen
-const { DefaultOverviewScreen } = Me.imports.components.screens.defaultOverviewScreen.defaultOverviewScreen
+import { DefaultDetailsScreen } from '../screens/defaultDetailsScreen/defaultDetailsScreen.js';
+import { DefaultOverviewScreen } from '../screens/defaultOverviewScreen/defaultOverviewScreen.js';
 
-var ScreenWrapper = GObject.registerClass({
+export const ScreenWrapper = GObject.registerClass({
       GTypeName: 'KubectlExtension_ScreenWrapper'
     },
     class ScreenWrapper extends St.Widget {

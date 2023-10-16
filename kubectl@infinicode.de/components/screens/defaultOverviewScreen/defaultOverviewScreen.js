@@ -1,25 +1,22 @@
-const { Clutter, GObject, St } = imports.gi
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import { isNullOrEmpty } from '../../../helpers/data.js';
+import { setTimeout, clearTimeout } from '../../../helpers/components.js';
+import { K8sNavigationBar } from '../../k8sNavigationBar/k8sNavigationBar.js';
+import { FlatList } from '../../flatList/flatList.js';
+import { createCard } from '../../cards/cardFactory.js';
+import { SearchBar } from '../../searchBar/searchBar.js';
 
-const { isNullOrEmpty } = Me.imports.helpers.data
-const { EventHandler } = Me.imports.helpers.eventHandler
-const { K8sNavigationBar } = Me.imports.components.k8sNavigationBar.k8sNavigationBar
-const { FlatList } = Me.imports.components.flatList.flatList
-const { createCard } = Me.imports.components.cards.cardFactory
-const { SearchBar } = Me.imports.components.searchBar.searchBar
-const { setTimeout, clearTimeout } = Me.imports.helpers.components
-
-const {
+import {
   SettingsHandler,
   KUBECTL_NAMESPACE,
   KUBECTL_CONTEXT,
   KUBECTL_RESOURCE
-} = Me.imports.helpers.settings
+}from '../../../helpers/settings.js';
 
-const { Translations } = Me.imports.helpers.translations
-const { kubectl } = Me.imports.services.kubectlService
+import { Translations } from '../../../helpers/translations.js';
+import { kubectl } from '../../../services/kubectlService.js';
 
 const SETTING_KEYS_TO_REFRESH = [
   KUBECTL_NAMESPACE,
@@ -27,7 +24,7 @@ const SETTING_KEYS_TO_REFRESH = [
   KUBECTL_RESOURCE
 ]
 
-var DefaultOverviewScreen = GObject.registerClass({
+export const DefaultOverviewScreen = GObject.registerClass({
   GTypeName: 'KubectlExtension_DefaultOverviewScreen'
 }, class DefaultOverviewScreen extends St.BoxLayout {
   _init (mainEventHandler) {

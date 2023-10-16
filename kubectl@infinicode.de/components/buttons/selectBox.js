@@ -1,20 +1,20 @@
-const { Atk, Clutter, GObject, Shell, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
+import Shell from 'gi://Shell'
+import Atk from 'gi://Atk'
 
-const Main = imports.ui.main
-const PopupMenu = imports.ui.popupMenu
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
-
-const { IconButton } = Me.imports.components.buttons.iconButton
-const { isNullOrEmpty } = Me.imports.helpers.data
-const { Translations } = Me.imports.helpers.translations
+import { isNullOrEmpty } from '../../helpers/data.js';
+import { Translations } from '../../helpers/translations.js';
 
 
 // THX https://gitlab.com/jmiskinis/gnome-shell-extension-task-widget
 // the idea with the task select box thingy is super awesome!
 
-var SelectBox = GObject.registerClass({
+export const SelectBox = GObject.registerClass({
   GTypeName: 'KubectlExtension_SelectBox',
   Signals: {
     'item-clicked': {

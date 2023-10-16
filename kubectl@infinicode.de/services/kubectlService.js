@@ -1,8 +1,5 @@
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import * as api from './kubectl/api.js';
 
-const api = Me.imports.services.kubectl.api
-
-var kubectl = {
+export const kubectl = {
   api: api
 }

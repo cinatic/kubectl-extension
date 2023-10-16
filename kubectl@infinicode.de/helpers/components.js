@@ -1,26 +1,25 @@
-const { Gio, GLib, GObject } = imports.gi
+import Gio from 'gi://Gio'
+import GLib from 'gi://GLib'
 
-const Mainloop = imports.mainloop
-const Main = imports.ui.main
-const MessageTray = imports.ui.messageTray
-
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 const iconCache = {}
 
-var getCustomIconPath = iconName => {
+export const getCustomIconPath = iconName => {
   if (iconCache[iconName]) {
     return iconCache[iconName]
   }
 
-  const newIcon = Gio.icon_new_for_string(Me.dir.get_child('icons').get_path() + '/' + iconName + '.svg')
+  const extensionObject = Extension.lookupByURL(import.meta.url);
+
+  const newIcon = Gio.icon_new_for_string(extensionObject.dir.get_child('icons').get_path() + '/' + iconName + '.svg')
   iconCache[iconName] = newIcon
 
   return newIcon
 }
 
-var setTimeout = (func, time, repeat) => GLib.timeout_add(
+export const setTimeout = (func, time, repeat) => GLib.timeout_add(
     GLib.PRIORITY_DEFAULT,
     time,
     () => {
@@ -29,7 +28,7 @@ var setTimeout = (func, time, repeat) => GLib.timeout_add(
       return repeat
     })
 
-var clearTimeout = timerId => {
+export const clearTimeout = timerId => {
   try {
     GLib.source_remove(timerId)
   } catch (e) {
@@ -43,7 +42,7 @@ var clearTimeout = timerId => {
   return null
 }
 
-var showNotification = (title, message, dialogType, transient) => {
+export const showNotification = (title, message, dialogType, transient) => {
   let icon = 'dialog-question'
 
   switch (dialogType) {
@@ -55,8 +54,8 @@ var showNotification = (title, message, dialogType, transient) => {
       break
   }
 
-  const source = new MessageTray.Source('kubectl-extension', icon)
-  const notification = new MessageTray.Notification(source, title, message)
+  const source = new Main.MessageTray.Source('kubectl-extension', icon)
+  const notification = new Main.MessageTray.Notification(source, title, message)
   notification.setTransient(transient)
 
   Main.messageTray.add(source)

@@ -1,4 +1,4 @@
-var Pod = class Pod {
+export const Pod = class Pod {
   constructor (data) {
     this.status = {}
     this.spec = {}

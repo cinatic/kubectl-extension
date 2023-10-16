@@ -1,16 +1,21 @@
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
 
-var POSITION_IN_PANEL_KEY = 'position-in-panel'
-var KUBECTL_NAMESPACE = 'namespace'
-var KUBECTL_CONTEXT = 'context'
-var KUBECTL_RESOURCE = 'resource'
 
-var SETTINGS_SCHEMA_DOMAIN = 'org.gnome.shell.extensions.kubectl'
+export const POSITION_IN_PANEL_KEY = 'position-in-panel'
+export const KUBECTL_NAMESPACE = 'namespace'
+export const KUBECTL_CONTEXT = 'context'
+export const KUBECTL_RESOURCE = 'resource'
 
-var SettingsHandler = class SettingsHandler {
+export const SETTINGS_SCHEMA_DOMAIN = 'org.gnome.shell.extensions.kubectl'
+
+export const SettingsHandler = class SettingsHandler {
   constructor () {
-    this._settings = ExtensionUtils.getSettings()
+    this._extensionObject = Extension.lookupByURL(import.meta.url)
+    this._settings = this._extensionObject.getSettings()
+  }
+
+  get extensionObject() {
+    return this._extensionObject
   }
 
   get position_in_panel () {

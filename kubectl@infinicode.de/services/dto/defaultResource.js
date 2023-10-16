@@ -1,4 +1,4 @@
-var DefaultResource = class Pod {
+export const DefaultResource = class Pod {
   constructor (data) {
     this.status = {}
     this.spec = {}

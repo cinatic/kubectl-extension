@@ -17,22 +17,21 @@
  *
  */
 
-const { Clutter, GObject, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import { ScreenWrapper } from './components/screenWrapper/screenWrapper.js';
+import { EventHandler } from './helpers/eventHandler.js';
+import { SettingsHandler } from './helpers/settings.js';
 
-const { ScreenWrapper } = Me.imports.components.screenWrapper.screenWrapper
-const { EventHandler } = Me.imports.helpers.eventHandler
-const { SettingsHandler } = Me.imports.helpers.settings
+import * as ComponentsHelper from './helpers/components.js';
 
-const ComponentsHelper = Me.imports.helpers.components
+import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 
-const Gettext = imports.gettext.domain('kubectl@infinicode.de')
-const _ = Gettext.gettext
-
-const Main = imports.ui.main
-const PanelMenu = imports.ui.panelMenu
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 
 const MenuPosition = {
   CENTER: 0,
@@ -130,20 +129,17 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
   }
 })
 
-var kubectlMenu = null
+let _kubectlMenu = null
 
-function init (extensionMeta) {
-  ExtensionUtils.initTranslations();
-}
+export default class KubectlExtension extends Extension {
+  enable() {
+    _kubectlMenu = new KubectlMenuButton()
+    Main.panel.addToStatusArea('kubectlMenu', _kubectlMenu)
+    _kubectlMenu.checkPositionInPanel()
+  }
 
-function enable () {
-  kubectlMenu = new KubectlMenuButton()
-  Main.panel.addToStatusArea('kubectlMenu', kubectlMenu)
-  kubectlMenu.checkPositionInPanel()
-}
-
-function disable () {
-  if (kubectlMenu) {
-    kubectlMenu.destroy()
+  disable() {
+    this._kubectlMenu.destroy();
+    delete this._kubectlMenu;
   }
 }

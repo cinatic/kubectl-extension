@@ -1,7 +1,6 @@
-const Gettext = imports.gettext
-const _ = Gettext.gettext
+ import { Gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js'
 
-var Translations = {
+export const Translations = {
   BACK: _('back'),
   FILTER_PLACEHOLDER: _('Filter Results'),
   LOADING_DATA: _('Loading Data'),

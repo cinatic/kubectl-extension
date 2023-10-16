@@ -1,13 +1,10 @@
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
-
-const { isNullOrEmpty } = Me.imports.helpers.data
-const { showNotification } = Me.imports.helpers.components
-const { run } = Me.imports.helpers.subprocess
-const { SettingsHandler } = Me.imports.helpers.settings
-const { Translations } = Me.imports.helpers.translations
-const { DefaultResource } = Me.imports.services.dto.defaultResource
-const { Pod } = Me.imports.services.dto.pod
+import { isNullOrEmpty } from '../../helpers/data.js';
+import { showNotification } from '../../helpers/components.js';
+import { run } from '../../helpers/subprocess.js';
+import { SettingsHandler } from '../../helpers/settings.js';
+import { Translations } from '../../helpers/translations.js';
+import { DefaultResource } from '../dto/defaultResource.js';
+import { Pod } from '../dto/pod.js';
 
 const defaultApiResources = [
   'pods',
@@ -18,26 +15,26 @@ const defaultApiResources = [
   'secrets'
 ]
 
-var createStandardParams = (context = true, namespace = true) => {
-  this._settings = new SettingsHandler()
+export const createStandardParams = (context = true, namespace = true) => {
+  const _settings = new SettingsHandler()
 
   const params = []
-  if (context && this._settings.context) {
-    params.push(`--context=${this._settings.context}`)
+  if (context && _settings.context) {
+    params.push(`--context=${_settings.context}`)
   }
 
-  if (namespace && this._settings.namespace) {
-    if (this._settings.namespace === 'all') {
+  if (namespace && _settings.namespace) {
+    if (_settings.namespace === 'all') {
       params.push(`--all-namespaces`)
     } else {
-      params.push(`--namespace=${this._settings.namespace}`)
+      params.push(`--namespace=${_settings.namespace}`)
     }
   }
 
   return params
 }
 
-var loadApiResources = async () => {
+export const loadApiResources = async () => {
   const command = [
     'kubectl',
     'api-resources',
@@ -73,7 +70,7 @@ var loadApiResources = async () => {
   return { data: apiResourceObjects, error }
 }
 
-var loadNamespaces = async () => {
+export const loadNamespaces = async () => {
   const command = [
     'kubectl',
     'get',
@@ -100,7 +97,7 @@ var loadNamespaces = async () => {
   return { data: namespaces, error }
 }
 
-var loadContexts = async () => {
+export const loadContexts = async () => {
   const command = ['kubectl', 'config', 'get-contexts', '-o', 'name'].join(' ')
 
   let { output, error } = await run({ command, asJson: false })
@@ -119,7 +116,7 @@ var loadContexts = async () => {
   return { data: contexts, error }
 }
 
-var loadResourcesByType = async (resourceType) => {
+export const loadResourcesByType = async (resourceType) => {
   let dataPromise
 
   switch (resourceType) {
@@ -141,7 +138,7 @@ var loadResourcesByType = async (resourceType) => {
   return data
 }
 
-var _fetchGenericResources = async (resourceType) => {
+export const _fetchGenericResources = async (resourceType) => {
   const command = [
     'kubectl',
     'get',
@@ -154,7 +151,7 @@ var _fetchGenericResources = async (resourceType) => {
   return run({ command })
 }
 
-var _loadDefaultResourceItems = async resourceType => {
+export const _loadDefaultResourceItems = async resourceType => {
   let { output, error } = await _fetchGenericResources(resourceType)
   let items = []
 
@@ -170,7 +167,7 @@ var _loadDefaultResourceItems = async resourceType => {
   return { data: items, error }
 }
 
-var _loadPodItems = async () => {
+export const _loadPodItems = async () => {
   let { output, error } = await _fetchGenericResources('pods')
 
   let items = []
