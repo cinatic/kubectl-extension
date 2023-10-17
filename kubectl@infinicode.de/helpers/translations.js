@@ -1,5 +1,3 @@
- import { Gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js'
-
 export const Translations = {
   BACK: _('back'),
   FILTER_PLACEHOLDER: _('Filter Results'),

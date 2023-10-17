@@ -139,7 +139,7 @@ export default class KubectlExtension extends Extension {
   }
 
   disable() {
-    this._kubectlMenu.destroy();
-    delete this._kubectlMenu;
+    _kubectlMenu.destroy();
+    _kubectlMenu = null;
   }
 }
