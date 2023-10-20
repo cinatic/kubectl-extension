@@ -21,17 +21,16 @@ import Clutter from 'gi://Clutter'
 import GObject from 'gi://GObject'
 import St from 'gi://St'
 
-import { ScreenWrapper } from './components/screenWrapper/screenWrapper.js';
-import { EventHandler } from './helpers/eventHandler.js';
-import { SettingsHandler } from './helpers/settings.js';
+import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js'
 
-import * as ComponentsHelper from './helpers/components.js';
+import * as Main from 'resource:///org/gnome/shell/ui/main.js'
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js'
 
-import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
-import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
+import { ScreenWrapper } from './components/screenWrapper/screenWrapper.js'
 
-import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
+import * as ComponentsHelper from './helpers/components.js'
+import { EventHandler } from './helpers/eventHandler.js'
+import { SettingsHandler } from './helpers/settings.js'
 
 const MenuPosition = {
   CENTER: 0,
@@ -132,14 +131,16 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
 let _kubectlMenu = null
 
 export default class KubectlExtension extends Extension {
-  enable() {
+  enable () {
     _kubectlMenu = new KubectlMenuButton()
     Main.panel.addToStatusArea('kubectlMenu', _kubectlMenu)
     _kubectlMenu.checkPositionInPanel()
   }
 
-  disable() {
-    _kubectlMenu.destroy();
-    _kubectlMenu = null;
+  disable () {
+    if (_kubectlMenu) {
+      _kubectlMenu.destroy()
+      _kubectlMenu = null
+    }
   }
 }
