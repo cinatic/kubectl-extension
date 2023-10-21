@@ -2,7 +2,6 @@ import GObject from 'gi://GObject'
 import St from 'gi://St'
 
 import { isNullOrEmpty } from '../../../helpers/data.js';
-import { setTimeout, clearTimeout } from '../../../helpers/components.js';
 import { K8sNavigationBar } from '../../k8sNavigationBar/k8sNavigationBar.js';
 import { FlatList } from '../../flatList/flatList.js';
 import { createCard } from '../../cards/cardFactory.js';

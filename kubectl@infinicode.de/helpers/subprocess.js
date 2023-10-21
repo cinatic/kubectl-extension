@@ -1,7 +1,6 @@
 import Gio from 'gi://Gio'
 import GLib from 'gi://GLib'
 
-import { clearTimeout, setTimeout } from './components.js'
 import { tryJsonParse } from './data.js'
 
 // partially copied from https://wiki.gnome.org/AndyHolmes/Sandbox/SpawningProcesses
@@ -48,6 +47,7 @@ export const run = async ({ command, asJson = true, input = null, timeout = 10 }
           clearTimeout(cancelTimeOutId)
           resolve({ output: stdout })
         } catch (e) {
+          clearTimeout(cancelTimeOutId)
           logError(e)
           reject(e)
         }

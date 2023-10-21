@@ -6,7 +6,7 @@ import Pango from 'gi://Pango'
 import { getComplementaryColor } from '../../../helpers/data.js';
 import { ButtonGroup } from '../../buttons/buttonGroup.js';
 import { SearchBar } from '../../searchBar/searchBar.js';
-import { setTimeout, clearTimeout, showNotification } from '../../../helpers/components.js';
+import { showNotification } from '../../../helpers/components.js';
 import { DefaultDetails } from '../../screens/defaultDetailsScreen/defaultDetails.js';
 
 import { Translations } from '../../../helpers/translations.js';

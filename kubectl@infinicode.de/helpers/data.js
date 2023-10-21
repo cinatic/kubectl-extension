@@ -1,7 +1,5 @@
 import GLib from 'gi://GLib'
 
-const ByteArray = imports.byteArray
-
 let CACHE = {}
 const CACHE_TIME = 10 * 1000
 
@@ -10,21 +8,6 @@ export const isNullOrEmpty = value => isNullOrUndefined(value) || value.length =
 export const fallbackIfNaN = (value, fallback = '--') => typeof value === 'undefined' || value === null || isNaN(value) ? fallback : value
 
 export const closest = (array, target) => array.reduce((prev, curr) => Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev)
-
-export const decodeBase64JsonOrDefault = (encodedJson, defaultValue) => {
-  try {
-    const value = JSON.parse(ByteArray.toString(GLib.base64_decode(encodedJson)))
-
-    if (!value) {
-      return defaultValue
-    }
-
-    return value
-  } catch (e) {
-    log(`failed to decode base64 json ${e}`)
-    return defaultValue
-  }
-}
 
 export const tryJsonParse = (rawJson, defaultValue) => {
   try {

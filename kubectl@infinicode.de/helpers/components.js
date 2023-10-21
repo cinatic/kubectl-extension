@@ -1,5 +1,4 @@
 import Gio from 'gi://Gio'
-import GLib from 'gi://GLib'
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
@@ -17,29 +16,6 @@ export const getCustomIconPath = iconName => {
   iconCache[iconName] = newIcon
 
   return newIcon
-}
-
-export const setTimeout = (func, time, repeat) => GLib.timeout_add(
-    GLib.PRIORITY_DEFAULT,
-    time,
-    () => {
-      func.call()
-
-      return repeat
-    })
-
-export const clearTimeout = timerId => {
-  try {
-    GLib.source_remove(timerId)
-  } catch (e) {
-  }
-
-  try {
-    GLib.source_destroy(timerId)
-  } catch (e) {
-  }
-
-  return null
 }
 
 export const showNotification = (title, message, dialogType, transient) => {
