@@ -1,5 +1,9 @@
-import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
+let _settings = null
+let _extensionObject = {}
 
+export const initSettings = extensionObject => {
+  _extensionObject = extensionObject
+}
 
 export const POSITION_IN_PANEL_KEY = 'position-in-panel'
 export const KUBECTL_NAMESPACE = 'namespace'
@@ -9,15 +13,6 @@ export const KUBECTL_RESOURCE = 'resource'
 export const SETTINGS_SCHEMA_DOMAIN = 'org.gnome.shell.extensions.kubectl'
 
 export const SettingsHandler = class SettingsHandler {
-  constructor () {
-    this._extensionObject = Extension.lookupByURL(import.meta.url)
-    this._settings = this._extensionObject.getSettings()
-  }
-
-  get extensionObject() {
-    return this._extensionObject
-  }
-
   get position_in_panel () {
     return this._settings.get_enum(POSITION_IN_PANEL_KEY)
   }
@@ -45,6 +40,19 @@ export const SettingsHandler = class SettingsHandler {
   set resource (value) {
     this._settings.set_string(KUBECTL_RESOURCE, value)
   }
+
+  get extensionObject () {
+    return _extensionObject
+  }
+
+  get _settings () {
+    if (!_settings) {
+      _settings = this.extensionObject.getSettings()
+    }
+
+    return _settings
+  }
+
 
   connect (identifier, onChange) {
     return this._settings.connect(identifier, onChange)

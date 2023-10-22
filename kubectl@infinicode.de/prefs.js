@@ -4,6 +4,8 @@ import Gtk from 'gi://Gtk'
 
 import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
+import { initSettings } from './helpers/settings.js'
+
 export const PrefsWidget = GObject.registerClass({
   GTypeName: 'KubectlExtension_PrefsWidget'
 }, class Widget extends Gtk.Box {
@@ -123,6 +125,8 @@ const isGnome4 = () => true
 
 export default class KubectlExtensionPreferences extends ExtensionPreferences {
   getPreferencesWidget() {
+    initSettings(this)
+
     const widget = new PrefsWidget(this.getSettings(), this.path)
 
     widget.Settings = this.getSettings();

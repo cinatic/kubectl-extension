@@ -3,6 +3,8 @@ import GLib from 'gi://GLib'
 
 import { tryJsonParse } from './data.js'
 
+export const CLEANUP_PROCEDURES = {}
+
 // partially copied from https://wiki.gnome.org/AndyHolmes/Sandbox/SpawningProcesses
 export const run = async ({ command, asJson = true, input = null, timeout = 10 }) => {
   try {
@@ -28,6 +30,7 @@ export const run = async ({ command, asJson = true, input = null, timeout = 10 }
     proc.init(cancellable)
 
     const cancelTimeOutId = setTimeout(() => cancellable.cancel(), timeout * 1000)
+    CLEANUP_PROCEDURES[cancelTimeOutId] = () => cancellable.cancel()
 
     const result = await new Promise((resolve, reject) => {
       proc.communicate_utf8_async(input, cancellable, (proc, res) => {
@@ -44,12 +47,13 @@ export const run = async ({ command, asJson = true, input = null, timeout = 10 }
             resolve({ error: stderr || stdout })
           }
 
-          clearTimeout(cancelTimeOutId)
           resolve({ output: stdout })
         } catch (e) {
-          clearTimeout(cancelTimeOutId)
           logError(e)
           reject(e)
+        } finally {
+          clearTimeout(cancelTimeOutId)
+          delete CLEANUP_PROCEDURES[cancelTimeOutId]
         }
       })
     })

@@ -30,7 +30,8 @@ import { ScreenWrapper } from './components/screenWrapper/screenWrapper.js'
 
 import * as ComponentsHelper from './helpers/components.js'
 import { EventHandler } from './helpers/eventHandler.js'
-import { SettingsHandler } from './helpers/settings.js'
+import { initSettings, SettingsHandler } from './helpers/settings.js'
+import { CLEANUP_PROCEDURES as SUBPROCESS_CLEANUP_PROCEDURES } from './helpers/subprocess.js'
 
 const MenuPosition = {
   CENTER: 0,
@@ -132,6 +133,7 @@ let _kubectlMenu = null
 
 export default class KubectlExtension extends Extension {
   enable () {
+    initSettings(this)
     _kubectlMenu = new KubectlMenuButton()
     Main.panel.addToStatusArea('kubectlMenu', _kubectlMenu)
     _kubectlMenu.checkPositionInPanel()
@@ -139,8 +141,22 @@ export default class KubectlExtension extends Extension {
 
   disable () {
     if (_kubectlMenu) {
+      this.cleanUp()
       _kubectlMenu.destroy()
       _kubectlMenu = null
     }
+  }
+
+  cleanUp () {
+    [SUBPROCESS_CLEANUP_PROCEDURES].forEach(procedureMap => {
+      Object.keys(procedureMap).forEach(timeoutId => {
+        try {
+          clearTimeout(timeoutId)
+          procedureMap[timeoutId].call()
+        } catch (e) {
+
+        }
+      })
+    })
   }
 }

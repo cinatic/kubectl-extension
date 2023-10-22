@@ -2,7 +2,6 @@ import Clutter from 'gi://Clutter'
 import GObject from 'gi://GObject'
 import St from 'gi://St'
 import Graphene from 'gi://Graphene'
-import Gtk from 'gi://Gtk'
 
 import { ScaleLayout } from '../scaleLayout/scaleLayout.js';
 import { Translations } from '../../helpers/translations.js';
@@ -24,8 +23,8 @@ export const FlatList = GObject.registerClass({
       x_expand: true,
       y_expand: true,
       clip_to_allocation: true,
-      hscrollbar_policy: Gtk.PolicyType.NEVER,
-      vscrollbar_policy: Gtk.PolicyType.AUTOMATIC
+      hscrollbar_policy: St.PolicyType.NEVER,
+      vscrollbar_policy: St.PolicyType.AUTOMATIC
     })
 
     this._content = new St.BoxLayout({

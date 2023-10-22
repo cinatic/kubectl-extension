@@ -1,7 +1,8 @@
 import Gio from 'gi://Gio'
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
+import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
+import { SettingsHandler } from './settings.js'
 
 const iconCache = {}
 
@@ -10,9 +11,9 @@ export const getCustomIconPath = iconName => {
     return iconCache[iconName]
   }
 
-  const extensionObject = Extension.lookupByURL(import.meta.url);
+  const settings = new SettingsHandler()
 
-  const newIcon = Gio.icon_new_for_string(extensionObject.dir.get_child('icons').get_path() + '/' + iconName + '.svg')
+  const newIcon = Gio.icon_new_for_string(settings.extensionObject.path + '/icons/' + iconName + '.svg')
   iconCache[iconName] = newIcon
 
   return newIcon
@@ -30,8 +31,8 @@ export const showNotification = (title, message, dialogType, transient) => {
       break
   }
 
-  const source = new Main.MessageTray.Source('kubectl-extension', icon)
-  const notification = new Main.MessageTray.Notification(source, title, message)
+  const source = new MessageTray.Source('kubectl-extension', icon)
+  const notification = new MessageTray.Notification(source, title, message)
   notification.setTransient(transient)
 
   Main.messageTray.add(source)

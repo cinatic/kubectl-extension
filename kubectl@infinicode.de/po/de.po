@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: fh@infinicode.de\n"
-"POT-Creation-Date: 2023-10-20 17:55+0200\n"
+"POT-Creation-Date: 2023-10-22 12:47+0200\n"
 "PO-Revision-Date: 2020-11-30 14:42+0100\n"
 "Last-Translator: fh@infinicode.de\n"
 "Language-Team: German\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: kubectl@infinicode.de/extension.js:56
+#: kubectl@infinicode.de/extension.js:57
 msgid "Kubectl"
 msgstr ""
 
