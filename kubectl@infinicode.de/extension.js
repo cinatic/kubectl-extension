@@ -17,22 +17,21 @@
  *
  */
 
-const { Clutter, GObject, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js'
 
-const { ScreenWrapper } = Me.imports.components.screenWrapper.screenWrapper
-const { EventHandler } = Me.imports.helpers.eventHandler
-const { SettingsHandler } = Me.imports.helpers.settings
+import * as Main from 'resource:///org/gnome/shell/ui/main.js'
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js'
 
-const ComponentsHelper = Me.imports.helpers.components
+import { ScreenWrapper } from './components/screenWrapper/screenWrapper.js'
 
-const Gettext = imports.gettext.domain('kubectl@infinicode.de')
-const _ = Gettext.gettext
-
-const Main = imports.ui.main
-const PanelMenu = imports.ui.panelMenu
+import * as ComponentsHelper from './helpers/components.js'
+import { EventHandler } from './helpers/eventHandler.js'
+import { initSettings, SettingsHandler } from './helpers/settings.js'
+import { CLEANUP_PROCEDURES as SUBPROCESS_CLEANUP_PROCEDURES } from './helpers/subprocess.js'
 
 const MenuPosition = {
   CENTER: 0,
@@ -130,20 +129,34 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
   }
 })
 
-var kubectlMenu = null
+let _kubectlMenu = null
 
-function init (extensionMeta) {
-  ExtensionUtils.initTranslations();
-}
+export default class KubectlExtension extends Extension {
+  enable () {
+    initSettings(this)
+    _kubectlMenu = new KubectlMenuButton()
+    Main.panel.addToStatusArea('kubectlMenu', _kubectlMenu)
+    _kubectlMenu.checkPositionInPanel()
+  }
 
-function enable () {
-  kubectlMenu = new KubectlMenuButton()
-  Main.panel.addToStatusArea('kubectlMenu', kubectlMenu)
-  kubectlMenu.checkPositionInPanel()
-}
+  disable () {
+    if (_kubectlMenu) {
+      this.cleanUp()
+      _kubectlMenu.destroy()
+      _kubectlMenu = null
+    }
+  }
 
-function disable () {
-  if (kubectlMenu) {
-    kubectlMenu.destroy()
+  cleanUp () {
+    [SUBPROCESS_CLEANUP_PROCEDURES].forEach(procedureMap => {
+      Object.keys(procedureMap).forEach(timeoutId => {
+        try {
+          clearTimeout(timeoutId)
+          procedureMap[timeoutId].call()
+        } catch (e) {
+
+        }
+      })
+    })
   }
 }

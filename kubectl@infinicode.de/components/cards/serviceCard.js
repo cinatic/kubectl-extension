@@ -1,14 +1,14 @@
-const { Clutter, GObject, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Util = imports.misc.util
-const Me = ExtensionUtils.getCurrentExtension()
+import * as Util from 'resource:///org/gnome/shell/misc/util.js';
 
-const { isNullOrEmpty } = Me.imports.helpers.data
-const { IconButton } = Me.imports.components.buttons.iconButton
-const { SettingsHandler } = Me.imports.helpers.settings
+import { IconButton } from '../buttons/iconButton.js';
+import { isNullOrEmpty } from '../../helpers/data.js';
+import { SettingsHandler } from '../../helpers/settings.js';
 
-var ServiceCard = GObject.registerClass({
+export const ServiceCard = GObject.registerClass({
   GTypeName: 'KubectlExtension_ServiceCard'
 }, class ServiceCard extends St.Button {
   _init (cardItem, mainEventHandler) {
@@ -122,7 +122,8 @@ var ServiceCard = GObject.registerClass({
         icon_size: 12,
         onClick: () => {
           this._mainEventHandler.emit('hide-panel')
-          const path = Me.dir.get_child('scripts').get_path()
+          const path = this._settings.extensionObject.dir.get_child('scripts').get_path()
+
           Util.spawnApp([
             'gnome-terminal',
             '--',

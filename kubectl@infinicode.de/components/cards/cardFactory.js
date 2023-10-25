@@ -1,11 +1,8 @@
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import { DefaultCard } from './defaultCard.js';
+import { PodCard } from './podCard.js';
+import { ServiceCard } from './serviceCard.js';
 
-const { DefaultCard } = Me.imports.components.cards.defaultCard
-const { PodCard } = Me.imports.components.cards.podCard
-const { ServiceCard } = Me.imports.components.cards.serviceCard
-
-var createCard = (type, data, mainEventHandler) => {
+export const createCard = (type, data, mainEventHandler) => {
   let cardItem
 
   switch ((type || '').toLowerCase()) {

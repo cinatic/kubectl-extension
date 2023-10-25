@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: fh@infinicode.de\n"
-"POT-Creation-Date: 2022-04-16 10:07+0200\n"
+"POT-Creation-Date: 2023-10-22 12:47+0200\n"
 "PO-Revision-Date: 2020-11-30 14:42+0100\n"
 "Last-Translator: fh@infinicode.de\n"
 "Language-Team: German\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: kubectl@infinicode.de/extension.js:58
+#: kubectl@infinicode.de/extension.js:57
 msgid "Kubectl"
 msgstr ""
 
@@ -105,83 +105,83 @@ msgid ""
 "                                        "
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:5
+#: kubectl@infinicode.de/helpers/translations.js:2
 msgid "back"
 msgstr "zurück"
 
-#: kubectl@infinicode.de/helpers/translations.js:6
+#: kubectl@infinicode.de/helpers/translations.js:3
 msgid "Filter Results"
 msgstr "Liste Filtern"
 
-#: kubectl@infinicode.de/helpers/translations.js:7
+#: kubectl@infinicode.de/helpers/translations.js:4
 msgid "Loading Data"
 msgstr "Lade Daten"
 
-#: kubectl@infinicode.de/helpers/translations.js:8
+#: kubectl@infinicode.de/helpers/translations.js:5
 msgid "UNKNOWN"
 msgstr "UNBEKANNT"
 
-#: kubectl@infinicode.de/helpers/translations.js:9
+#: kubectl@infinicode.de/helpers/translations.js:6
 msgid "Copied Selection"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:10
+#: kubectl@infinicode.de/helpers/translations.js:7
 msgid "Copied JSON"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:12
+#: kubectl@infinicode.de/helpers/translations.js:9
 msgid "Copy whole JSON"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:13
+#: kubectl@infinicode.de/helpers/translations.js:10
 msgid "No Items"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:14
+#: kubectl@infinicode.de/helpers/translations.js:11
 msgid "No Selection"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:15
+#: kubectl@infinicode.de/helpers/translations.js:12
 msgid "No Contexts"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:18
+#: kubectl@infinicode.de/helpers/translations.js:15
 #, javascript-format
 msgid "Failed loading k8s resources %s"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:19
+#: kubectl@infinicode.de/helpers/translations.js:16
 msgid "All Namespaces"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:20
+#: kubectl@infinicode.de/helpers/translations.js:17
 msgid "Key Data"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:23
+#: kubectl@infinicode.de/helpers/translations.js:20
 msgid "Name"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:24
+#: kubectl@infinicode.de/helpers/translations.js:21
 msgid "Namespace"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:25
+#: kubectl@infinicode.de/helpers/translations.js:22
 msgid "Node"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:26
+#: kubectl@infinicode.de/helpers/translations.js:23
 msgid "UID"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:27
+#: kubectl@infinicode.de/helpers/translations.js:24
 msgid "Created"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:28
+#: kubectl@infinicode.de/helpers/translations.js:25
 msgid "Kind"
 msgstr ""
 
-#: kubectl@infinicode.de/helpers/translations.js:31
+#: kubectl@infinicode.de/helpers/translations.js:28
 msgid "%H:%M:%S %d.%m.%Y"
 msgstr ""

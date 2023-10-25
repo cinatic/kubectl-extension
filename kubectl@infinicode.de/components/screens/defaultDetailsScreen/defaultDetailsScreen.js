@@ -1,19 +1,17 @@
-const { Clutter, GObject, Pango, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
+import Pango from 'gi://Pango'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import { getComplementaryColor } from '../../../helpers/data.js';
+import { ButtonGroup } from '../../buttons/buttonGroup.js';
+import { SearchBar } from '../../searchBar/searchBar.js';
+import { showNotification } from '../../../helpers/components.js';
+import { DefaultDetails } from '../../screens/defaultDetailsScreen/defaultDetails.js';
 
-const { getComplementaryColor } = Me.imports.helpers.data
-const { ButtonGroup } = Me.imports.components.buttons.buttonGroup
-const { SearchBar } = Me.imports.components.searchBar.searchBar
-const { setTimeout, clearTimeout } = Me.imports.helpers.components
-const { DefaultDetails } = Me.imports.components.screens.defaultDetailsScreen.defaultDetails
-const { showNotification } = Me.imports.helpers.components
+import { Translations } from '../../../helpers/translations.js';
 
-const { Translations } = Me.imports.helpers.translations
-const { kubectl } = Me.imports.services.kubectlService
-
-var DefaultDetailsScreen = GObject.registerClass({
+export const DefaultDetailsScreen = GObject.registerClass({
   GTypeName: 'KubectlExtension_DefaultDetailsScreen'
 }, class DefaultDetailsScreen extends St.BoxLayout {
   _init ({ cardItem, mainEventHandler }) {

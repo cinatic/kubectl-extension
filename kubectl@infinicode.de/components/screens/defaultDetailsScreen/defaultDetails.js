@@ -1,11 +1,10 @@
-const { GObject, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
+import { Translations } from '../../../helpers/translations.js';
 
-const Me = ExtensionUtils.getCurrentExtension()
-const { Translations } = Me.imports.helpers.translations
-
-var DefaultDetails = GObject.registerClass({
+export const DefaultDetails = GObject.registerClass({
   GTypeName: 'KubectlExtension_DefaultDetails'
 }, class DefaultDetails extends St.BoxLayout {
   _init ({ cardItem }) {
@@ -34,7 +33,7 @@ var DefaultDetails = GObject.registerClass({
     const headerBox = new St.BoxLayout({
       style_class: 'header-box',
       x_expand: true,
-      y_align: St.Align.MIDDLE
+      y_align: Clutter.ActorAlign.CENTER
     })
 
     const cardItemNameLabel = new St.Label({

@@ -1,13 +1,13 @@
-const { Clutter, GObject, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Util = imports.misc.util
-const Me = ExtensionUtils.getCurrentExtension()
+import * as Util from 'resource:///org/gnome/shell/misc/util.js'
 
-const { IconButton } = Me.imports.components.buttons.iconButton
-const { SettingsHandler } = Me.imports.helpers.settings
+import { IconButton } from '../buttons/iconButton.js'
+import { SettingsHandler } from '../../helpers/settings.js'
 
-var PodCard = GObject.registerClass({
+export const PodCard = GObject.registerClass({
   GTypeName: 'KubectlExtension_PodCard'
 }, class PodCard extends St.Button {
   _init (cardItem, mainEventHandler) {
@@ -92,7 +92,8 @@ var PodCard = GObject.registerClass({
       icon_name: 'utilities-terminal-symbolic',
       onClick: () => {
         this._mainEventHandler.emit('hide-panel')
-        const path = Me.dir.get_child('scripts').get_path()
+        const path = this._settings.extensionObject.dir.get_child('scripts').get_path()
+
         Util.spawnApp([
           'gnome-terminal',
           '--',

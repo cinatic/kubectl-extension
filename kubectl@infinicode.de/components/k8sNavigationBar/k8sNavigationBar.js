@@ -1,20 +1,19 @@
-const { Clutter, GObject, St } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
 
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+import { SelectBox } from '../buttons/selectBox.js';
+import { isNullOrEmpty } from '../../helpers/data.js';
+import { Translations } from '../../helpers/translations.js';
 
-const { SelectBox } = Me.imports.components.buttons.selectBox
-const { isNullOrEmpty } = Me.imports.helpers.data
-const { Translations } = Me.imports.helpers.translations
-
-const {
+import {
   SettingsHandler,
   KUBECTL_NAMESPACE,
   KUBECTL_CONTEXT,
   KUBECTL_RESOURCE
-} = Me.imports.helpers.settings
+} from '../../helpers/settings.js'
 
-const { kubectl } = Me.imports.services.kubectlService
+import { kubectl } from '../../services/kubectlService.js';
 
 const SETTING_KEYS_TO_REFRESH = [
   KUBECTL_NAMESPACE,
@@ -22,7 +21,7 @@ const SETTING_KEYS_TO_REFRESH = [
   KUBECTL_RESOURCE
 ]
 
-var K8sNavigationBar = GObject.registerClass({
+export const K8sNavigationBar = GObject.registerClass({
   GTypeName: 'KubectlExtension_K8sNavigationBar',
   Signals: {
     'text-change': {
@@ -47,11 +46,15 @@ var K8sNavigationBar = GObject.registerClass({
       }
     })
 
-    this._sync()
+    this._sync().catch(e => {
+      log(e)
+    })
   }
 
   refresh () {
-    this._sync()
+    this._sync().catch(e => {
+      log(e)
+    })
   }
 
   async _sync () {

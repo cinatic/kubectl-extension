@@ -6,15 +6,9 @@
   "settings-schema": "org.gnome.shell.extensions.kubectl",
   "gettext-domain": "kubectl@infinicode.de",
   "shell-version": [
-    "3.36",
-    "3.38",
-    "40",
-    "41",
-    "42",
-    "43",
-    "44"
+    "45"
   ],
   "url": "https://github.com/cinatic/kubectl-extension",
   "uuid": "kubectl@infinicode.de",
-  "version": 7
+  "version": 12
 }

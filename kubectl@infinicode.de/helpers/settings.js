@@ -1,18 +1,18 @@
-const ExtensionUtils = imports.misc.extensionUtils
-const Me = ExtensionUtils.getCurrentExtension()
+let _settings = null
+let _extensionObject = {}
 
-var POSITION_IN_PANEL_KEY = 'position-in-panel'
-var KUBECTL_NAMESPACE = 'namespace'
-var KUBECTL_CONTEXT = 'context'
-var KUBECTL_RESOURCE = 'resource'
+export const initSettings = extensionObject => {
+  _extensionObject = extensionObject
+}
 
-var SETTINGS_SCHEMA_DOMAIN = 'org.gnome.shell.extensions.kubectl'
+export const POSITION_IN_PANEL_KEY = 'position-in-panel'
+export const KUBECTL_NAMESPACE = 'namespace'
+export const KUBECTL_CONTEXT = 'context'
+export const KUBECTL_RESOURCE = 'resource'
 
-var SettingsHandler = class SettingsHandler {
-  constructor () {
-    this._settings = ExtensionUtils.getSettings()
-  }
+export const SETTINGS_SCHEMA_DOMAIN = 'org.gnome.shell.extensions.kubectl'
 
+export const SettingsHandler = class SettingsHandler {
   get position_in_panel () {
     return this._settings.get_enum(POSITION_IN_PANEL_KEY)
   }
@@ -40,6 +40,19 @@ var SettingsHandler = class SettingsHandler {
   set resource (value) {
     this._settings.set_string(KUBECTL_RESOURCE, value)
   }
+
+  get extensionObject () {
+    return _extensionObject
+  }
+
+  get _settings () {
+    if (!_settings) {
+      _settings = this.extensionObject.getSettings()
+    }
+
+    return _settings
+  }
+
 
   connect (identifier, onChange) {
     return this._settings.connect(identifier, onChange)

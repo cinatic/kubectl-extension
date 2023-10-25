@@ -1,7 +1,4 @@
-const Gettext = imports.gettext
-const _ = Gettext.gettext
-
-var Translations = {
+export const Translations = {
   BACK: _('back'),
   FILTER_PLACEHOLDER: _('Filter Results'),
   LOADING_DATA: _('Loading Data'),

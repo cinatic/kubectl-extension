@@ -1,6 +1,9 @@
-const { GObject, St, Clutter, Gtk, Pango } = imports.gi
+import Clutter from 'gi://Clutter'
+import GObject from 'gi://GObject'
+import St from 'gi://St'
+import Pango from 'gi://Pango'
 
-var ButtonGroup = GObject.registerClass({
+export const ButtonGroup = GObject.registerClass({
   GTypeName: 'KubectlExtension_ButtonGroup',
   Signals: {
     'clicked': {
@@ -15,7 +18,7 @@ var ButtonGroup = GObject.registerClass({
     })
 
     if (!enableScrollbar) {
-      this.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+      this.set_policy(St.PolicyType.NEVER, St.PolicyType.NEVER)
     }
 
     this._selectedButton = buttons.find(item => item.selected)
