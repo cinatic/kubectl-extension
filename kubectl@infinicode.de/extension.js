@@ -67,14 +67,14 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
       child: panelMenuIcon
     })
 
-    this.add_actor(gitlabPanelIconBin)
+    this.add_child(gitlabPanelIconBin)
 
     const bin = new St.Widget({ style_class: 'kubectl-extension' })
     bin._delegate = this
     this.menu.box.add_child(bin)
 
     this._screenWrapper = new ScreenWrapper(mainEventHandler)
-    bin.add_actor(this._screenWrapper)
+    bin.add_child(this._screenWrapper)
 
     // Bind events
     mainEventHandler.connect('hide-panel', () => this.menu.close())
@@ -100,7 +100,7 @@ let KubectlMenuButton = GObject.registerClass(class KubectlMenuButton extends Pa
       return
     }
 
-    parent.remove_actor(container)
+    parent.remove_child(container)
 
     let children = null
 
