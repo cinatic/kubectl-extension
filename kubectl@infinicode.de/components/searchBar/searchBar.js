@@ -19,7 +19,8 @@ export const SearchBar = GObject.registerClass({
   _init ({ back_screen_name, showFilterInputBox = true, mainEventHandler } = {}) {
     super._init({
       style_class: 'search-bar',
-      x_expand: true
+      x_expand: true,
+      x_align: Clutter.ActorAlign.FILL
     })
 
     this.back_screen_name = back_screen_name
@@ -38,7 +39,8 @@ export const SearchBar = GObject.registerClass({
   _createSearchArea ({ showFilterInputBox }) {
     let searchInputBox = new St.BoxLayout({
       style_class: 'search-area-box',
-      x_expand: true
+      x_expand: true,
+      x_align: Clutter.ActorAlign.START,
     })
 
     if (this.back_screen_name) {
@@ -61,7 +63,7 @@ export const SearchBar = GObject.registerClass({
       const inputBox = new St.Entry({
         style_class: 'search-text-input',
         hint_text: Translations.FILTER_PLACEHOLDER,
-        can_focus: true
+        can_focus: true,
       })
 
       inputBox.connect('notify::text', entry => this.emit('text-change', entry.text))

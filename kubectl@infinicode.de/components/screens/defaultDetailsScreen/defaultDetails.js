@@ -67,12 +67,12 @@ export const DefaultDetails = GObject.registerClass({
       vertical: true
     })
 
-    leftDetailBox.add(this._createDetailItem(
+    leftDetailBox.add_child(this._createDetailItem(
         this._createDetailItemLabel(Translations.RESOURCE.KIND),
         this._createDetailItemValue(this.cardItem.kind || '')
     ))
 
-    leftDetailBox.add(this._createDetailItem(
+    leftDetailBox.add_child(this._createDetailItem(
         this._createDetailItemLabel(Translations.RESOURCE.NAMESPACE),
         this._createDetailItemValue(this.cardItem.metadata.namespace || 'N/A')
     ))
@@ -88,12 +88,12 @@ export const DefaultDetails = GObject.registerClass({
       vertical: true
     })
 
-    rightDetailBox.add(this._createDetailItem(
+    rightDetailBox.add_child(this._createDetailItem(
         this._createDetailItemLabel(Translations.RESOURCE.UID),
         this._createDetailItemValue(this.cardItem.metadata.uid || 'N/A')
     ))
 
-    rightDetailBox.add(this._createDetailItem(
+    rightDetailBox.add_child(this._createDetailItem(
         this._createDetailItemLabel(Translations.RESOURCE.CREATED),
         this._createDetailItemValue(this.cardItem.metadata.creationTimestamp || '')
     ))
@@ -117,6 +117,7 @@ export const DefaultDetails = GObject.registerClass({
     const detailItemLabel = new St.Bin({
       style_class: 'detail-item-label-bin',
       x_expand: true,
+      x_align: Clutter.ActorAlign.START,
       child: new St.Label({ style_class: 'detail-item-label', text })
     })
 
@@ -127,6 +128,7 @@ export const DefaultDetails = GObject.registerClass({
     const detailItemValue = new St.Bin({
       style_class: 'detail-item-value-bin',
       x_expand: true,
+      x_align: Clutter.ActorAlign.END,
       child: new St.Label({ style_class: `detail-item-value tar ${additionalStyleClass || ''}`, text: text.toString() })
     })
 

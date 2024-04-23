@@ -103,7 +103,7 @@ export const SelectBox = GObject.registerClass({
   _render () {
     this._selectBoxMenu = new PopupMenu.PopupMenu(this, 0.5, St.Side.BOTTOM)
 
-    Main.uiGroup.add_actor(this._selectBoxMenu.actor)
+    Main.uiGroup.add_child(this._selectBoxMenu.actor)
     this._selectBoxMenu.actor.hide()
 
     this.connect('clicked', async () => {
@@ -121,7 +121,7 @@ export const SelectBox = GObject.registerClass({
 
       const innerContentBox = new St.BoxLayout({ vertical: true })
 
-      menuSelectScrollView.add_actor(innerContentBox)
+      menuSelectScrollView.add_child(innerContentBox)
 
       this._buttons.forEach(button => {
         const popupMenuItem = new PopupMenu.PopupMenuItem(button.label)
@@ -149,7 +149,7 @@ export const SelectBox = GObject.registerClass({
       })
 
       mainSelectBoxContentBox.add_child(menuSelectScrollView)
-      menuSection.actor.add_actor(mainSelectBoxContentBox)
+      menuSection.actor.add_child(mainSelectBoxContentBox)
 
       this._selectBoxMenu.toggle()
     })

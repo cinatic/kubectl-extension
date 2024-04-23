@@ -54,10 +54,10 @@ export const DefaultDetailsScreen = GObject.registerClass({
     this.connect('destroy', this._onDestroy.bind(this))
 
     searchBar.connect('refresh', () => {
-      this._sync()
+      this._sync().catch(e => log(e))
     })
 
-    this._sync()
+    this._sync().catch(e => log(e))
   }
 
   async _sync () {
@@ -96,7 +96,7 @@ export const DefaultDetailsScreen = GObject.registerClass({
       x_expand: true
     })
 
-    scrollView.add_actor(innerContentBox)
+    scrollView.add_child(innerContentBox)
 
     const rawResourceJsonLabel = new St.Label({
       style_class: 'raw-resource-json-label',

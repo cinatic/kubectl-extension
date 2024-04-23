@@ -16,7 +16,8 @@ export const DefaultCard = GObject.registerClass({
 
     const vContentBox = new St.BoxLayout({
       vertical: true,
-      x_expand: true
+      x_expand: true,
+      x_align: Clutter.ActorAlign.START,
     })
 
     this.set_child(vContentBox)
@@ -33,12 +34,14 @@ export const DefaultCard = GObject.registerClass({
     const contentBox = new St.BoxLayout({
       style_class: 'card-item-content-box',
       x_expand: true,
-      y_align: Clutter.ActorAlign.CENTER
+      y_align: Clutter.ActorAlign.CENTER,
+      x_align: Clutter.ActorAlign.START
     })
 
     const cardItemNameLabel = new St.Label({
       style_class: 'card-item-name fwb',
-      text: this.cardItem.name
+      text: this.cardItem.name,
+      x_align: Clutter.ActorAlign.START
     })
 
     contentBox.add_child(cardItemNameLabel)

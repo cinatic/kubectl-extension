@@ -14,6 +14,7 @@ export const PodCard = GObject.registerClass({
     super._init({
       style_class: 'card message pod-card',
       can_focus: true,
+      x_align: Clutter.ActorAlign.FILL,
       x_expand: true
     })
 
@@ -23,6 +24,8 @@ export const PodCard = GObject.registerClass({
     this.cardItem = cardItem
 
     const contentBox = new St.BoxLayout({
+      x_expand: true,
+      x_align: Clutter.ActorAlign.FILL,
       y_align: Clutter.ActorAlign.CENTER
     })
 
@@ -41,7 +44,8 @@ export const PodCard = GObject.registerClass({
     const detailsBox = new St.BoxLayout({
       style_class: 'details-box',
       x_expand: true,
-      vertical: true
+      vertical: true,
+      x_align: Clutter.ActorAlign.START,
     })
 
     const nameRow = this._createNameRow()
@@ -81,7 +85,6 @@ export const PodCard = GObject.registerClass({
   _createButtonBox () {
     const buttonBox = new St.BoxLayout({
       style_class: 'button-box',
-      x_expand: true,
       vertical: true,
       y_align: Clutter.ActorAlign.CENTER,
       x_align: Clutter.ActorAlign.END

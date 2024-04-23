@@ -24,6 +24,8 @@ export const ServiceCard = GObject.registerClass({
     this._settings = new SettingsHandler()
 
     const contentBox = new St.BoxLayout({
+      x_expand: true,
+      x_align: Clutter.ActorAlign.START,
       y_align: Clutter.ActorAlign.CENTER
     })
 
