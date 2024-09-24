@@ -1,4 +1,4 @@
-import Clutter from 'gi://Clutter'
+import Cogl from 'gi://Cogl'
 import GObject from 'gi://GObject'
 import St from 'gi://St'
 import Pango from 'gi://Pango'
@@ -111,7 +111,7 @@ export const DefaultDetailsScreen = GObject.registerClass({
     const fgColor = themeNode.get_foreground_color()
 
     const newColorString = getComplementaryColor(fgColor.to_string().slice(1, 7), false)
-    const secondaryColor = Clutter.color_from_string(`${newColorString}ff`)[1]
+    const secondaryColor = Cogl.color_from_string(`${newColorString}ff`)[1]
 
     rawResourceJsonLabel.clutter_text.set_reactive(true)
     rawResourceJsonLabel.clutter_text.set_selectable(true)
